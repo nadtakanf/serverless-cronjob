@@ -1,0 +1,49 @@
+service: serverless-cronjob
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  profile: ${opt:profile, "nadtakan"}
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - logs:DescribeLogGroups
+        - logs:CreateLogGroup
+        - logs:PutRetentionPolicy
+      Resource: "*"
+
+functions:
+# Standard
+  EST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 13 ? * MON-FRI *)
+
+  CST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 14 ? * MON-FRI *)
+
+  MST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 15 ? * MON-FRI *)
+
+  PST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 16 ? * MON-FRI *)
+  
+  AKST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 17 ? * MON-FRI *)
+  
+  HST:
+    handler: handler.hello
+    events:
+      - schedule: cron(0 18 ? * MON-FRI *)
