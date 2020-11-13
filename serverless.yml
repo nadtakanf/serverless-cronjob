@@ -115,4 +115,4 @@ functions:
       - schedule: cron(0 19 ? * MON-FRI *) # run MON-FRI at 8 AM HDT
         enabled: false
     environment:
-      TIMEZONE: -36000v
+      TIMEZONE: -36000
