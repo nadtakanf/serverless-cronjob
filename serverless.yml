@@ -19,6 +19,7 @@ provider:
     STAGE: ${self:provider.stage}
 
 functions:
+# Standard
   EST:
     handler: handler.handler
     events:
@@ -66,3 +67,52 @@ functions:
         enabled: true
     environment:
       TIMEZONE: -36000
+
+# Day light
+  EDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 14 ? * MON-FRI *) # run MON-FRI at 8 AM EST
+        enabled: false
+    environment:
+      TIMEZONE: -14400
+
+  CDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 15 ? * MON-FRI *) # run MON-FRI at 8 AM CST
+        enabled: false
+    environment:
+      TIMEZONE: -18000
+
+  MDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 16 ? * MON-FRI *) # run MON-FRI at 8 AM MST
+        enabled: false
+    environment:
+      TIMEZONE: -21600
+
+  PDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 17 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: false
+    environment:
+      TIMEZONE: -25200
+
+  AKDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 18 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: false
+    environment:
+      TIMEZONE: -28800
+
+  HDT:
+    handler: handler.handler
+    events:
+      - schedule: cron(0 19 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: false
+    environment:
+      TIMEZONE: -36000v
