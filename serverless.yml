@@ -15,35 +15,54 @@ provider:
         - logs:CreateLogGroup
         - logs:PutRetentionPolicy
       Resource: "*"
+  environment:
+    STAGE: ${self:provider.stage}
 
 functions:
-# Standard
   EST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 13 ? * MON-FRI *)
+      - schedule: cron(0 13 ? * MON-FRI *) # run MON-FRI at 8 AM EST
+        enabled: true
+    environment:
+      TIMEZONE: -14400
 
   CST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 14 ? * MON-FRI *)
+      - schedule: cron(0 14 ? * MON-FRI *) # run MON-FRI at 8 AM CST
+        enabled: true
+    environment:
+      TIMEZONE: -18000
 
   MST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 15 ? * MON-FRI *)
+      - schedule: cron(0 15 ? * MON-FRI *) # run MON-FRI at 8 AM MST
+        enabled: true
+    environment:
+      TIMEZONE: -21600
 
   PST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 16 ? * MON-FRI *)
-  
+      - schedule: cron(0 16 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: true
+    environment:
+      TIMEZONE: -25200
+
   AKST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 17 ? * MON-FRI *)
-  
+      - schedule: cron(0 17 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: true
+    environment:
+      TIMEZONE: -28800
+
   HST:
-    handler: handler.hello
+    handler: handler.handler
     events:
-      - schedule: cron(0 18 ? * MON-FRI *)
+      - schedule: cron(0 18 ? * MON-FRI *) # run MON-FRI at 8 AM PST
+        enabled: true
+    environment:
+      TIMEZONE: -36000
